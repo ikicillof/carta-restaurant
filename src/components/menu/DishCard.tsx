@@ -1,26 +1,43 @@
-import Image from "next/image";
-import type { Plato, TagPlato } from "@/data/types";
-import { formatPrecio } from "@/lib/format";
+"use client";
 
-const TAG_LABELS: Record<TagPlato, string> = {
-  vegetariano: "Vegetariano",
-  "sin-tacc": "Sin TACC",
-  picante: "Picante",
-  "para-compartir": "Para compartir",
-  destacado: "Destacado",
-};
+import { useState } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import type { Plato } from "@/data/types";
+import { formatPrecio } from "@/lib/format";
+import { TAG_LABELS } from "@/lib/tags";
+import { supportsHover } from "@/lib/webgl";
+
+// Dinámico y sin SSR: three.js/R3F/drei no deben entrar en el bundle
+// inicial, solo cargan cuando alguien realmente abre el visor 3D.
+const DishModal = dynamic(
+  () => import("@/components/viewer/DishModal").then((m) => m.DishModal),
+  { ssr: false }
+);
 
 interface DishCardProps {
   plato: Plato;
 }
 
 export function DishCard({ plato }: DishCardProps) {
+  const [visorAbierto, setVisorAbierto] = useState(false);
   const tagsSecundarios = plato.tags.filter((t) => t !== "destacado");
   const esDestacado = plato.tags.includes("destacado");
 
+  function precargarModelo() {
+    const modelo = plato.modelo;
+    if (!modelo || !supportsHover()) return;
+    // Import dinámico: mantiene drei fuera del bundle principal y solo
+    // trae la librería (y el GLB) cuando el mouse pasa por la card.
+    import("@react-three/drei").then(({ useGLTF }) => useGLTF.preload(modelo));
+  }
+
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-hueso/10 bg-grafito">
-      <div className="relative aspect-[4/3] w-full bg-carbon">
+      <div
+        className="relative aspect-[4/3] w-full bg-carbon"
+        onMouseEnter={precargarModelo}
+      >
         <Image
           src={plato.imagen}
           alt={`${plato.nombre}, imagen ilustrativa`}
@@ -36,6 +53,7 @@ export function DishCard({ plato }: DishCardProps) {
         {plato.modelo && (
           <button
             type="button"
+            onClick={() => setVisorAbierto(true)}
             className="absolute bottom-3 right-3 rounded-full bg-carbon/80 px-3 py-1.5 text-xs font-medium text-hueso backdrop-blur transition-colors hover:bg-carbon"
           >
             Ver en 3D
@@ -70,6 +88,10 @@ export function DishCard({ plato }: DishCardProps) {
           </ul>
         )}
       </div>
+
+      {visorAbierto && (
+        <DishModal plato={plato} onClose={() => setVisorAbierto(false)} />
+      )}
     </article>
   );
 }

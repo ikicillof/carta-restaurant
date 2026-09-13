@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# modelos 3D sin optimizar (ver public/models/README.md)
+/public/models/raw/*
+!/public/models/raw/.gitkeep
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
