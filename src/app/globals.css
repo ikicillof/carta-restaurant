@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Marca Rescoldo — nunca hardcodear estos hex en componentes, usar las clases utilitarias */
+  --color-carbon: #141110;
+  --color-grafito: #1e1a18;
+  --color-cobre: #b65c2e;
+  --color-brasa: #e8a33d;
+  --color-hueso: #f2ede6;
+  --color-ceniza: #8a817b;
+  --color-visor: #e9e4de;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-carbon);
+  color: var(--color-hueso);
+}
+
+::selection {
+  background: var(--color-cobre);
+  color: var(--color-hueso);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brasa);
+  outline-offset: 2px;
+}

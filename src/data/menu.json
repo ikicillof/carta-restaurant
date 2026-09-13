@@ -1,0 +1,140 @@
+{
+  "categorias": [
+    { "id": "entradas", "label": "Entradas" },
+    { "id": "principales", "label": "Principales" },
+    { "id": "guarniciones", "label": "Guarniciones" },
+    { "id": "postres", "label": "Postres" }
+  ],
+  "platos": [
+    {
+      "id": "provoleta-al-rescoldo",
+      "nombre": "Provoleta al rescoldo",
+      "descripcion": "Provoleta entera directo sobre las brasas, con el borde tostado y el centro que se estira. Orégano y un chorro de oliva al salir.",
+      "precio": 14900,
+      "categoria": "entradas",
+      "tags": ["destacado"],
+      "imagen": "/images/platos/provoleta-al-rescoldo.svg",
+      "modelo": null
+    },
+    {
+      "id": "mollejas-al-limon",
+      "nombre": "Mollejas al limón",
+      "descripcion": "Mollejas de corazón, doradas a la parrilla hasta que quedan crocantes afuera y tiernas adentro. Jugo de limón y sal gruesa, nada más.",
+      "precio": 18500,
+      "categoria": "entradas",
+      "tags": [],
+      "imagen": "/images/platos/mollejas-al-limon.svg",
+      "modelo": null
+    },
+    {
+      "id": "empanadas-cuchillo",
+      "nombre": "Empanadas de carne cortada a cuchillo (3u)",
+      "descripcion": "Carne cortada a cuchillo, cebolla de verdeo y un toque de comino. Repulgo a mano, horno de barro.",
+      "precio": 11400,
+      "categoria": "entradas",
+      "tags": ["para-compartir"],
+      "imagen": "/images/platos/empanadas-cuchillo.svg",
+      "modelo": null
+    },
+    {
+      "id": "chorizo-criollo",
+      "nombre": "Chorizo criollo con chimichurri",
+      "descripcion": "Chorizo casero pinchado justo antes de subir a la parrilla, con chimichurri de la casa hecho esa misma mañana.",
+      "precio": 9800,
+      "categoria": "entradas",
+      "tags": ["para-compartir", "picante"],
+      "imagen": "/images/platos/chorizo-criollo.svg",
+      "modelo": null
+    },
+    {
+      "id": "ojo-de-bife-madurado",
+      "nombre": "Ojo de bife madurado 400g",
+      "descripcion": "Cuarenta días de maduración en cámara propia. Se sirve con el hueso limpio y el punto que pidas, sin discutir.",
+      "precio": 34900,
+      "categoria": "principales",
+      "tags": ["destacado"],
+      "imagen": "/images/platos/ojo-de-bife-madurado.svg",
+      "modelo": null
+    },
+    {
+      "id": "asado-de-tira",
+      "nombre": "Asado de tira 500g",
+      "descripcion": "Tira ancha, cocción larga a las brasas hasta que el hueso se separa solo. Para compartir en la parrilla, no en el plato.",
+      "precio": 31500,
+      "categoria": "principales",
+      "tags": ["para-compartir"],
+      "imagen": "/images/platos/asado-de-tira.svg",
+      "modelo": null
+    },
+    {
+      "id": "entrana-fina",
+      "nombre": "Entraña fina",
+      "descripcion": "Entraña sin membrana, vuelta y vuelta sobre fuego fuerte. Sal parrillera y nada que le tape el sabor.",
+      "precio": 29800,
+      "categoria": "principales",
+      "tags": [],
+      "imagen": "/images/platos/entrana-fina.svg",
+      "modelo": null
+    },
+    {
+      "id": "bife-de-chorizo",
+      "nombre": "Bife de chorizo 350g",
+      "descripcion": "Corte clásico, marcado a fuego alto y terminado a las brasas. Grasa dorada en el borde, jugoso en el medio.",
+      "precio": 30200,
+      "categoria": "principales",
+      "tags": [],
+      "imagen": "/images/platos/bife-de-chorizo.svg",
+      "modelo": null
+    },
+    {
+      "id": "pesca-del-dia",
+      "nombre": "Pesca del día a la parrilla",
+      "descripcion": "Lo que trajo la lonja esa mañana, entero o en postas según el tamaño. Manteca de hierbas al final.",
+      "precio": 28700,
+      "categoria": "principales",
+      "tags": ["sin-tacc"],
+      "imagen": "/images/platos/pesca-del-dia.svg",
+      "modelo": null
+    },
+    {
+      "id": "verduras-al-rescoldo",
+      "nombre": "Verduras al rescoldo",
+      "descripcion": "Zapallo, cebolla y batata enterrados en la ceniza caliente hasta que se cocinan en su propio vapor. Se pelan en la mesa.",
+      "precio": 12300,
+      "categoria": "guarniciones",
+      "tags": ["vegetariano", "sin-tacc", "destacado"],
+      "imagen": "/images/platos/verduras-al-rescoldo.svg",
+      "modelo": null
+    },
+    {
+      "id": "papas-rusticas-romero",
+      "nombre": "Papas rústicas con romero",
+      "descripcion": "Papa andina con piel, romero fresco y sal en escamas, doradas al calor de las brasas.",
+      "precio": 8900,
+      "categoria": "guarniciones",
+      "tags": ["vegetariano", "sin-tacc"],
+      "imagen": "/images/platos/papas-rusticas-romero.svg",
+      "modelo": null
+    },
+    {
+      "id": "flan-mixto",
+      "nombre": "Flan mixto",
+      "descripcion": "Flan casero de manteca, servido con dulce de leche y crema batida en el momento.",
+      "precio": 10500,
+      "categoria": "postres",
+      "tags": ["vegetariano"],
+      "imagen": "/images/platos/flan-mixto.svg",
+      "modelo": null
+    },
+    {
+      "id": "panqueque-dulce-de-leche",
+      "nombre": "Panqueque de dulce de leche",
+      "descripcion": "Panqueque fino relleno de dulce de leche repostero, apenas tibio, pasado por la plancha al pedir.",
+      "precio": 9600,
+      "categoria": "postres",
+      "tags": ["vegetariano"],
+      "imagen": "/images/platos/panqueque-dulce-de-leche.svg",
+      "modelo": null
+    }
+  ]
+}

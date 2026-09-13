@@ -1,0 +1,86 @@
+[
+  {
+    "id": "rev-01",
+    "autor": "Martín Ibáñez",
+    "iniciales": "MI",
+    "colorAvatar": "cobre",
+    "calificacion": 5,
+    "texto": "El ojo de bife madurado justifica el viaje solo. Pedimos punto jugoso y llegó exacto, con el hueso limpio como prometen en la carta.",
+    "fecha": "2026-08-22",
+    "resenasDelAutor": 47
+  },
+  {
+    "id": "rev-02",
+    "autor": "Lucía Ferreyra",
+    "iniciales": "LF",
+    "colorAvatar": "brasa",
+    "calificacion": 4,
+    "texto": "Muy buena carne y buena atención. El lugar es chico así que conviene reservar los fines de semana.",
+    "fecha": "2026-08-10",
+    "resenasDelAutor": 12
+  },
+  {
+    "id": "rev-03",
+    "autor": "Gonzalo Prieto",
+    "iniciales": "GP",
+    "colorAvatar": "ceniza",
+    "calificacion": 3,
+    "texto": "La comida está muy bien pero un sábado a la noche tardaron casi 50 minutos entre que nos sentamos y llegó la entrada. Avisaron que estaban a full, se agradece la honestidad, pero para la próxima reservo con más margen.",
+    "fecha": "2026-07-28",
+    "resenasDelAutor": 63
+  },
+  {
+    "id": "rev-04",
+    "autor": "Sabrina Kowalski",
+    "iniciales": "SK",
+    "colorAvatar": "cobre",
+    "calificacion": 5,
+    "texto": "Las verduras al rescoldo son una sorpresa: nadie las pide pensando que van a ser lo mejor de la mesa y terminan siéndolo.",
+    "fecha": "2026-07-15",
+    "resenasDelAutor": 8,
+    "plato": "Verduras al rescoldo"
+  },
+  {
+    "id": "rev-05",
+    "autor": "Diego Achával",
+    "iniciales": "DA",
+    "colorAvatar": "brasa",
+    "calificacion": 5,
+    "texto": "Fuimos un martes al mediodía, sin espera, mesa afuera. La provoleta al rescoldo sale con el borde quemado justo, como tiene que ser.",
+    "fecha": "2026-06-30",
+    "resenasDelAutor": 21,
+    "plato": "Provoleta al rescoldo"
+  },
+  {
+    "id": "rev-06",
+    "autor": "Florencia Nardi",
+    "iniciales": "FN",
+    "colorAvatar": "ceniza",
+    "calificacion": 5,
+    "texto": "Un clásico de barrio bien llevado. Nada de cartas eternas ni platos de autor, carne buena y bien cocinada.",
+    "fecha": "2026-06-05",
+    "resenasDelAutor": 5
+  },
+  {
+    "id": "rev-07",
+    "autor": "Tomás Elizalde",
+    "iniciales": "TE",
+    "colorAvatar": "cobre",
+    "calificacion": 4,
+    "texto": "Buena relación precio-calidad para la zona. El flan mixto viene generoso.",
+    "fecha": "2026-05-19",
+    "resenasDelAutor": 34,
+    "plato": "Flan mixto"
+  },
+  {
+    "id": "rev-08",
+    "autor": "Rocío Bazterrica",
+    "iniciales": "RB",
+    "colorAvatar": "brasa",
+    "calificacion": 5,
+    "texto": "Vengo desde que abrieron. El asado de tira los domingos al mediodía es mi ritual y todavía no me decepcionó una vez.",
+    "fecha": "2026-04-11",
+    "resenasDelAutor": 16,
+    "plato": "Asado de tira"
+  }
+]

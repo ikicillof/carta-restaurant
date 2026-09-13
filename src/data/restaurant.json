@@ -1,0 +1,63 @@
+{
+  "nombre": "Rescoldo",
+  "bajada": "Parrilla de barrio, fuego lento.",
+  "historia": [
+    "Rescoldo es lo que queda cuando el fuego ya no hace ruido: brasa tapada, calor parejo, tiempo. Así cocinamos todo, del pan a los cortes grandes.",
+    "No hay ahumador a gas ni salamandra. Hay leña de espinillo y quebracho, parrilleros que llegan a las nueve de la mañana y una parrilla que no se apaga hasta que cierra la cocina.",
+    "El producto entra entero y se corta acá adentro. Lo demás —la carta, la decoración, el nombre— es lo de menos."
+  ],
+  "direccion": {
+    "calle": "Nicaragua 4820",
+    "barrio": "Palermo Soho",
+    "ciudad": "Buenos Aires, Argentina",
+    "mapsUrl": "https://maps.google.com/?q=Nicaragua+4820,+Palermo,+Buenos+Aires"
+  },
+  "horarios": {
+    "lunes": { "abierto": false, "franjas": [] },
+    "martes": {
+      "abierto": true,
+      "franjas": [
+        { "desde": "12:30", "hasta": "16:00" },
+        { "desde": "20:00", "hasta": "00:00" }
+      ]
+    },
+    "miercoles": {
+      "abierto": true,
+      "franjas": [
+        { "desde": "12:30", "hasta": "16:00" },
+        { "desde": "20:00", "hasta": "00:00" }
+      ]
+    },
+    "jueves": {
+      "abierto": true,
+      "franjas": [
+        { "desde": "12:30", "hasta": "16:00" },
+        { "desde": "20:00", "hasta": "00:00" }
+      ]
+    },
+    "viernes": {
+      "abierto": true,
+      "franjas": [
+        { "desde": "12:30", "hasta": "16:00" },
+        { "desde": "20:00", "hasta": "01:00" }
+      ]
+    },
+    "sabado": {
+      "abierto": true,
+      "franjas": [
+        { "desde": "12:30", "hasta": "16:30" },
+        { "desde": "20:00", "hasta": "01:00" }
+      ]
+    },
+    "domingo": {
+      "abierto": true,
+      "franjas": [{ "desde": "12:30", "hasta": "16:30" }]
+    }
+  },
+  "telefono": "+54 11 4832-5566",
+  "whatsapp": "+5491145556677",
+  "redes": {
+    "instagram": "https://instagram.com/rescoldoparrilla",
+    "facebook": "https://facebook.com/rescoldoparrilla"
+  }
+}

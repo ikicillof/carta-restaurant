@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="mapaTitulo">
+  <title id="mapaTitulo">Ilustración estilizada de las calles de Palermo Soho alrededor de Rescoldo</title>
+  <defs>
+    <linearGradient id="mapaBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E1A18" />
+      <stop offset="100%" stop-color="#141110" />
+    </linearGradient>
+    <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8A33D" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#E8A33D" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#mapaBg)" />
+
+  <!-- manzanas -->
+  <g fill="#F2EDE6" fill-opacity="0.05" stroke="#F2EDE6" stroke-opacity="0.14" stroke-width="1.5">
+    <rect x="60" y="60" width="220" height="180" rx="4" />
+    <rect x="320" y="60" width="200" height="180" rx="4" />
+    <rect x="560" y="60" width="180" height="180" rx="4" />
+    <rect x="60" y="280" width="220" height="180" rx="4" />
+    <rect x="560" y="280" width="180" height="180" rx="4" />
+    <rect x="60" y="500" width="220" height="60" rx="4" />
+    <rect x="320" y="500" width="200" height="60" rx="4" />
+    <rect x="560" y="500" width="180" height="60" rx="4" />
+  </g>
+
+  <!-- manzana destacada (la de Rescoldo) -->
+  <rect x="320" y="280" width="200" height="180" rx="4" fill="#B65C2E" fill-opacity="0.14" stroke="#B65C2E" stroke-opacity="0.5" stroke-width="1.5" />
+
+  <!-- calles -->
+  <g stroke="#8A817B" stroke-opacity="0.35" stroke-width="2">
+    <line x1="0" y1="260" x2="800" y2="260" />
+    <line x1="0" y1="480" x2="800" y2="480" />
+    <line x1="300" y1="0" x2="300" y2="600" />
+    <line x1="540" y1="0" x2="540" y2="600" />
+  </g>
+  <g stroke="#8A817B" stroke-opacity="0.2" stroke-width="1" stroke-dasharray="2 6">
+    <line x1="0" y1="40" x2="800" y2="40" />
+    <line x1="40" y1="0" x2="40" y2="600" />
+  </g>
+
+  <!-- nombres de calle (genéricos, orientativos) -->
+  <text x="410" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" letter-spacing="1.5" fill="#8A817B">NICARAGUA</text>
+  <text x="30" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" letter-spacing="1.5" fill="#8A817B" transform="rotate(-90 30 370)">GUATEMALA</text>
+
+  <!-- pin -->
+  <circle cx="420" cy="345" r="70" fill="url(#pinGlow)" />
+  <g transform="translate(420 345)">
+    <path d="M0 -46 C22 -46 38 -30 38 -8 C38 22 0 46 0 46 C0 46 -38 22 -38 -8 C-38 -30 -22 -46 0 -46 Z" fill="#B65C2E" stroke="#F2EDE6" stroke-width="2" />
+    <circle cx="0" cy="-8" r="13" fill="#F2EDE6" />
+  </g>
+
+  <text x="400" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8A817B">Ilustración de referencia, no a escala</text>
+</svg>
