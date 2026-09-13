@@ -45,8 +45,8 @@ tiene mergeado (fast-forward) todo lo de la Fase 1.
 - [x] Script `npm run optimize:models` (`scripts/optimize-models.mjs`) con `@gltf-transform/cli`: Draco + WebP por default (cero instalación extra), `--ktx2` opcional si hay `ktx` CLI instalado (si no está, corta con mensaje claro en vez de fallar a mitad de camino). Probado de punta a punta con un GLB de prueba generado a mano (geometría + material, sin dependender de tener un Meshy real) y con `--ktx2` sin el binario para confirmar el mensaje de error. `public/models/raw/` gitignoreado (solo se commitean los `.glb` ya optimizados)
 - [x] Revisión final: `tsc --noEmit` + `eslint` + `npm run build` limpios con todo lo de fase 2 adentro; JS inicial gzip sigue en ~179KB (three/R3F/drei confirmado fuera del bundle inicial)
 - [x] Regresión de fase 1: sin bug de scroll-jump al cargar, sin botones "Ver en 3D" fantasma (los 13 platos siguen en `modelo: null`), sin errores de consola
-- [ ] Commit + push de fase 2 a `claude/rescoldo-landing-page-4sbr8k` — *siguiente paso*
-- [ ] Mostrarle capturas/resumen al cliente y esperar aprobación antes de Fase 3
+- [x] Commit + push de fase 2 a `claude/rescoldo-landing-page-4sbr8k`
+- [ ] Mostrarle capturas/resumen al cliente y esperar aprobación antes de Fase 3 — *siguiente paso*
 
 ## Fase 3 — Animaciones de scroll (no arrancada)
 
