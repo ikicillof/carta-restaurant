@@ -10,7 +10,7 @@ export function DragHint({ visible }: DragHintProps) {
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <span className="flex items-center gap-2 rounded-full bg-carbon/70 px-3.5 py-1.5 text-xs font-medium text-hueso backdrop-blur">
+      <span className="flex items-center gap-2 rounded-[2px] bg-carbon/70 px-3.5 py-1.5 text-xs font-medium text-hueso backdrop-blur">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
           <path
             d="M4 10c1.5-3 4-4.5 6-4.5s4.5 1.5 6 4.5c-1.5 3-4 4.5-6 4.5S5.5 13 4 10Z"

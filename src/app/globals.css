@@ -9,9 +9,27 @@
   --color-hueso: #f2ede6;
   --color-ceniza: #8a817b;
   --color-visor: #e9e4de;
+  /* Cobre aclarado ~14% hacia hueso: mismo tono de marca, pero con
+     suficiente luminancia para que texto carbon encima llegue a 4.5:1
+     (el cobre de marca puro se queda en ~4.1:1 con texto oscuro). Solo
+     para chips pequeños (avatares) que necesitan fondo sólido + texto
+     oscuro; no reemplaza a --color-cobre en ningún otro lugar. */
+  --color-cobre-chip: color-mix(in srgb, var(--color-cobre) 86%, var(--color-hueso) 14%);
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
+
+  --animate-float: float 2.6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 html {
@@ -37,4 +55,28 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-brasa);
   outline-offset: 2px;
+}
+
+html {
+  scrollbar-color: var(--color-ceniza) var(--color-carbon);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-carbon);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-grafito);
+  border: 3px solid var(--color-carbon);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ceniza);
 }

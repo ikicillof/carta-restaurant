@@ -107,7 +107,7 @@ export function DishModal({ plato, onClose }: DishModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="visor-titulo"
-        className="flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-grafito sm:h-[min(82vh,640px)] sm:max-w-3xl sm:flex-row sm:rounded-3xl"
+        className="flex max-h-[92dvh] w-full flex-col overflow-hidden bg-grafito sm:h-[min(82vh,640px)] sm:max-w-3xl sm:flex-row"
       >
         <div className="relative aspect-square w-full shrink-0 bg-visor sm:aspect-auto sm:h-full sm:w-3/5">
           {!webglOk ? (
@@ -170,7 +170,7 @@ export function DishModal({ plato, onClose }: DishModalProps) {
               {tagsSecundarios.map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-full border border-ceniza/30 px-2.5 py-1 text-[11px] text-ceniza"
+                  className="rounded-[2px] border border-ceniza/30 px-2.5 py-1 text-xs text-ceniza"
                 >
                   {TAG_LABELS[tag]}
                 </li>

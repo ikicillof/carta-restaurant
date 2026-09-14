@@ -33,7 +33,7 @@ export function Horarios({ horarios }: HorariosProps) {
             <span className="flex items-center gap-2 font-medium">
               {label}
               {esHoy && (
-                <span className="rounded-full bg-brasa px-2 py-0.5 text-[10px] font-medium text-carbon">
+                <span className="rounded-[2px] bg-brasa px-1.5 py-0.5 text-xs font-medium uppercase tracking-wide text-carbon">
                   Hoy
                 </span>
               )}

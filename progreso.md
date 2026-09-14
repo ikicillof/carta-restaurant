@@ -65,6 +65,57 @@ tiene mergeado (fast-forward) todo lo de la Fase 1.
 - [ ] Accesibilidad: contraste AA (ya verificado `ceniza` sobre `carbon`/`grafito` en fase 1, revisar bajo nueva paleta si cambia), navegación completa por teclado, `alt` descriptivos, jerarquía de headings, foco visible
 - [ ] Lighthouse mobile — apuntar a 90+ en las 4 categorías, reportar números reales
 
+## Refactor de diseño con impeccable + skills de emilkowalski ✅
+
+Pedido del cliente: sacar el look "hecho por IA" (todo con bordes
+redondeados) y subir el nivel de craft general, siguiendo las reglas de
+las skills instaladas.
+
+- [x] Instalado desde `github.com/ikicillof/claude-setup`: 10 skills sueltas
+      de `emilkowalski/skills` (animate-expo, animation-vocabulary,
+      apple-design, ask-sonner, find-animation-opportunities,
+      improve-animations, pick-ui-library, prototype, review-animations,
+      write-swift) en `~/.claude/skills/`, y 4 plugins vía marketplace:
+      `iart-ai/web-animation-skills`, `iart-ai/webgl-animation-skills`,
+      `iart-ai/motion-design-skills` (sin `motion-background`, redundante) y
+      `pbakaus/impeccable` — los 4 con scope `user`, quedan disponibles en
+      cualquier sesión futura, no solo esta
+- [x] Revisado el código fuente del plugin `impeccable` antes de instalarlo
+      (sin ofuscación, descarga del binario verificada por sha256, sin red
+      flags) — el plugin trae hooks `PostToolUse`/`Stop` que correrían su
+      detector automáticamente después de edits en archivos de UI, pero
+      **no se activaron**: quedan apagados hasta que alguien corra
+      `/impeccable hooks on` en un proyecto puntual (confirmado con
+      `impeccable context`, que reportó ningún hook activo esta sesión)
+- [x] Corrido `impeccable detect` (CLI mecánico + navegador real vía
+      Playwright, ya que el detector no traía Chrome propio en este
+      sandbox) sobre la página en vivo. Hallazgos reales corregidos:
+      - Contraste 4.1:1 en avatar cobre+texto carbon → nuevo token
+        `--color-cobre-chip` (cobre aclarado ~14%) en `globals.css`
+      - Texto funcional de 10px ("Hoy" en Horarios) → 12px
+      - Chips/tags en 11px → 12px (piso de legibilidad)
+      - Línea de ~100 caracteres en el aviso del footer → `max-w-md`
+      - `animate-bounce` (easing elástico, marcado "slop") en el indicador
+        de scroll del Hero → keyframe `float` propio con ease-in-out
+      - Font "overused" (Fraunces + Inter aparecen en la lista de fuentes
+        saturadas de IA) → **no se tocó**: el brief original del cliente
+        fijó esas dos fuentes explícitamente, y la propia skill dice "el
+        brief gana" sobre esta advertencia
+      - "cramped-padding" en la nav de categorías → falso positivo
+        confirmado visualmente (el detector mide el padding del contenedor
+        con el borde, no el de los `<a>` hijos que ya tienen `py-3`)
+- [x] Sistema de bordes con intención (pedido explícito: "no todo bordes
+      redondeados"): 0 en contenedores estructurales (cards de platos y
+      reseñas, panel de resumen, modal del visor, marco del mapa), 2px en
+      botones/chips/badges/CTAs, círculo solo en lo que es redondo por
+      naturaleza (avatares, spinner del loader, botón cerrar del modal)
+- [x] Nav de categorías: de pills rellenos a tabs con subrayado (menos
+      "scaffolding" genérico, más carta de restaurante editorial)
+- [x] Scrollbar temáticada (webkit + firefox) — detalle de craft-floor.md:
+      "lo más barato de mostrar que la página fue diseñada, no ensamblada"
+- [x] `tsc --noEmit` + `eslint` + `npm run build` limpios; QA visual
+      desktop/mobile en Carta, Reseñas, Visitanos y Hero
+
 ## Entregable final (pendiente)
 
 - [ ] `README.md` con instrucciones de deploy en Vercel

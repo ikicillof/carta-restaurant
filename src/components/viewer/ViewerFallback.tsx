@@ -9,7 +9,7 @@ interface ViewerFallbackProps {
 export function ViewerFallback({ plato, mensaje }: ViewerFallbackProps) {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 bg-visor p-6 text-center">
-      <div className="relative h-28 w-28 overflow-hidden rounded-full border border-carbon/10">
+      <div className="relative h-28 w-28 overflow-hidden border border-carbon/10">
         <Image
           src={plato.imagen}
           alt={`${plato.nombre}, imagen ilustrativa`}

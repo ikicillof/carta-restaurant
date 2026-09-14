@@ -9,7 +9,7 @@ interface ReviewCardProps {
 
 export function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <article className="flex h-full flex-col gap-3 rounded-2xl border border-hueso/10 bg-grafito p-5">
+    <article className="flex h-full flex-col gap-3 border border-hueso/10 bg-grafito p-5">
       <div className="flex items-center gap-3">
         <Avatar iniciales={review.iniciales} color={review.colorAvatar} />
         <div className="min-w-0">
@@ -33,7 +33,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
       <p className="text-sm leading-relaxed text-hueso/85">{review.texto}</p>
 
       {review.plato && (
-        <span className="mt-auto inline-flex w-fit items-center rounded-full border border-ceniza/30 px-2.5 py-1 text-[11px] text-ceniza">
+        <span className="mt-auto inline-flex w-fit items-center rounded-[2px] border border-ceniza/30 px-2.5 py-1 text-xs text-ceniza">
           {review.plato}
         </span>
       )}

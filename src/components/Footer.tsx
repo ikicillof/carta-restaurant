@@ -31,7 +31,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-hueso/10 pt-6 text-xs text-ceniza sm:flex-row sm:items-center sm:justify-between">
-          <p>
+          <p className="max-w-md">
             Sitio de demostración. Nombre, carta, reseñas e imágenes son
             ficticios y se usan solo con fines ilustrativos.
           </p>

@@ -33,7 +33,7 @@ export function DishCard({ plato }: DishCardProps) {
   }
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-2xl border border-hueso/10 bg-grafito">
+    <article className="flex flex-col overflow-hidden border border-hueso/10 bg-grafito">
       <div
         className="relative aspect-[4/3] w-full bg-carbon"
         onMouseEnter={precargarModelo}
@@ -46,7 +46,7 @@ export function DishCard({ plato }: DishCardProps) {
           className="object-cover"
         />
         {esDestacado && (
-          <span className="absolute left-3 top-3 rounded-full bg-brasa px-2.5 py-1 text-[11px] font-medium text-carbon">
+          <span className="absolute left-3 top-3 rounded-[2px] bg-brasa px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-carbon">
             Destacado
           </span>
         )}
@@ -54,7 +54,7 @@ export function DishCard({ plato }: DishCardProps) {
           <button
             type="button"
             onClick={() => setVisorAbierto(true)}
-            className="absolute bottom-3 right-3 rounded-full bg-carbon/80 px-3 py-1.5 text-xs font-medium text-hueso backdrop-blur transition-colors hover:bg-carbon"
+            className="absolute bottom-3 right-3 rounded-[2px] bg-carbon/80 px-3 py-1.5 text-xs font-medium text-hueso backdrop-blur transition-colors hover:bg-carbon"
           >
             Ver en 3D
           </button>
@@ -80,7 +80,7 @@ export function DishCard({ plato }: DishCardProps) {
             {tagsSecundarios.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-ceniza/30 px-2.5 py-1 text-[11px] text-ceniza"
+                className="rounded-[2px] border border-ceniza/30 px-2.5 py-1 text-xs text-ceniza"
               >
                 {TAG_LABELS[tag]}
               </li>

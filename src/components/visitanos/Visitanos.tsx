@@ -33,7 +33,7 @@ export function Visitanos() {
                 href={data.direccion.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-full bg-brasa px-5 py-2.5 text-sm font-medium text-carbon transition-opacity hover:opacity-90"
+                className="mt-4 inline-flex items-center gap-2 rounded-[2px] bg-brasa px-5 py-2.5 text-sm font-medium text-carbon transition-opacity hover:opacity-90"
               >
                 Cómo llegar
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -68,7 +68,7 @@ export function Visitanos() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-hueso/10 lg:aspect-square">
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-hueso/10 lg:aspect-square">
             <Image
               src="/images/mapa-palermo.svg"
               alt={`Mapa ilustrado de la ubicación de Rescoldo en ${data.direccion.barrio}`}

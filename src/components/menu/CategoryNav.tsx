@@ -54,7 +54,7 @@ export function CategoryNav({ categorias }: CategoryNavProps) {
       <nav
         ref={navRef}
         aria-label="Categorías de la carta"
-        className="mx-auto flex max-w-6xl gap-2 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="mx-auto flex max-w-6xl gap-7 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {categorias.map((cat) => {
           const esActiva = cat.id === activa;
@@ -63,10 +63,10 @@ export function CategoryNav({ categorias }: CategoryNavProps) {
               key={cat.id}
               href={`#${cat.id}`}
               aria-current={esActiva ? "true" : undefined}
-              className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-1.5 text-sm transition-colors ${
+              className={`shrink-0 whitespace-nowrap border-b-2 py-3 text-sm transition-colors ${
                 esActiva
-                  ? "border-brasa bg-brasa text-carbon"
-                  : "border-hueso/15 text-ceniza hover:text-hueso"
+                  ? "border-brasa text-hueso"
+                  : "border-transparent text-ceniza hover:text-hueso"
               }`}
             >
               {cat.label}

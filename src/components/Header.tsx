@@ -68,7 +68,7 @@ export function Header() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-brasa px-3.5 py-2 text-xs font-medium text-carbon transition-opacity hover:opacity-90 sm:px-4 sm:text-sm"
+            className="rounded-[2px] bg-brasa px-3.5 py-2 text-xs font-medium tracking-wide text-carbon transition-opacity hover:opacity-90 sm:px-4 sm:text-sm"
           >
             WhatsApp
           </a>
@@ -79,7 +79,7 @@ export function Header() {
             aria-expanded={mostrarMenu}
             aria-controls="menu-mobile"
             aria-label={mostrarMenu ? "Cerrar menú" : "Abrir menú"}
-            className="rounded-md p-2 text-hueso transition-colors hover:text-brasa sm:hidden"
+            className="p-2 text-hueso transition-colors hover:text-brasa sm:hidden"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               {mostrarMenu ? (
@@ -114,7 +114,7 @@ export function Header() {
                 <a
                   href={link.href}
                   onClick={() => setMenuAbierto(false)}
-                  className="block rounded-md px-2 py-2.5 text-base text-hueso/90 transition-colors hover:text-brasa"
+                  className="block border-b border-hueso/10 py-2.5 text-base text-hueso/90 transition-colors last:border-none hover:text-brasa"
                 >
                   {link.label}
                 </a>

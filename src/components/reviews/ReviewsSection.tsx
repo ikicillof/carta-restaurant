@@ -23,7 +23,7 @@ export async function ReviewsSection() {
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr]">
-          <div className="flex flex-col gap-4 rounded-2xl border border-hueso/10 bg-grafito p-6 lg:sticky lg:top-24 lg:self-start">
+          <div className="flex flex-col gap-4 border border-hueso/10 bg-grafito p-6 lg:sticky lg:top-24 lg:self-start">
             <div className="flex items-baseline gap-3">
               <span className="font-display text-5xl text-hueso">
                 {promedio.toFixed(1)}
@@ -42,9 +42,9 @@ export async function ReviewsSection() {
                 return (
                   <div key={d.calificacion} className="flex items-center gap-2 text-xs text-ceniza">
                     <span className="w-3 text-right">{d.calificacion}</span>
-                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-carbon">
+                    <div className="h-1 flex-1 overflow-hidden bg-carbon">
                       <div
-                        className="h-full rounded-full bg-brasa"
+                        className="h-full bg-brasa"
                         style={{ width: `${porcentaje}%` }}
                       />
                     </div>

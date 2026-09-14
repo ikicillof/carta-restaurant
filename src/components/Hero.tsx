@@ -45,7 +45,7 @@ export function Hero() {
           height="28"
           viewBox="0 0 18 28"
           fill="none"
-          className="animate-bounce motion-reduce:animate-none"
+          className="animate-float motion-reduce:animate-none"
         >
           <rect
             x="1"
