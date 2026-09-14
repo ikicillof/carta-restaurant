@@ -116,6 +116,34 @@ las skills instaladas.
 - [x] `tsc --noEmit` + `eslint` + `npm run build` limpios; QA visual
       desktop/mobile en Carta, Reseñas, Visitanos y Hero
 
+## Fotos reales de platos con Nano Banana ✅
+
+- [x] Generadas las 14 imágenes (13 platos + fondo de ambiente del
+      restaurante) con Gemini/Nano Banana, usando prompts con guía de
+      estilo compartida (fotografía real, tonos cobre/ámbar, fondo oscuro
+      desenfocado, props rústicos) armados a partir de nombre+descripción
+      de cada plato en `menu.json`
+- [x] Resuelto el problema de traspaso: las imágenes pegadas en el chat no
+      quedan accesibles como archivo en esta sesión — el usuario las subió
+      a Google Drive (sueltas, no en zip, por el límite de 10MB de la
+      herramienta de descarga) y se bajaron una por una vía la API de
+      Drive, identificando visualmente cada una contra el prompt que le
+      correspondía (los nombres de archivo de Gemini son hashes sin
+      relación al contenido)
+- [x] Optimizadas con `sharp` (resize a 1400px de ancho, JPEG calidad 82) →
+      ~80-160KB cada una, guardadas en `public/images/platos/<id>.jpg`
+      reemplazando los placeholders SVG; fondo de ambiente en
+      `public/images/restaurante-ambiente.jpg` (2400px, para uso futuro en
+      fase 3, ej. hero animado)
+- [x] `menu.json` actualizado (imagen: `.svg` → `.jpg` para los 13 platos),
+      SVGs viejos borrados
+- [x] `tsc --noEmit` + `eslint` + `npm run build` limpios; QA visual
+      desktop confirmando que cada foto corresponde al plato correcto
+- [x] La API key de Gemini que pasó el usuario se usó solo para probar
+      cuota (sin costo, dio 429 por falta de billing) y se descartó — no
+      quedó guardada en ningún lado, ni en el repo ni en el filesystem
+      persistente
+
 ## Entregable final (pendiente)
 
 - [ ] `README.md` con instrucciones de deploy en Vercel

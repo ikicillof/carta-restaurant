@@ -13,7 +13,7 @@
       "precio": 14900,
       "categoria": "entradas",
       "tags": ["destacado"],
-      "imagen": "/images/platos/provoleta-al-rescoldo.svg",
+      "imagen": "/images/platos/provoleta-al-rescoldo.jpg",
       "modelo": null
     },
     {
@@ -23,7 +23,7 @@
       "precio": 18500,
       "categoria": "entradas",
       "tags": [],
-      "imagen": "/images/platos/mollejas-al-limon.svg",
+      "imagen": "/images/platos/mollejas-al-limon.jpg",
       "modelo": null
     },
     {
@@ -33,7 +33,7 @@
       "precio": 11400,
       "categoria": "entradas",
       "tags": ["para-compartir"],
-      "imagen": "/images/platos/empanadas-cuchillo.svg",
+      "imagen": "/images/platos/empanadas-cuchillo.jpg",
       "modelo": null
     },
     {
@@ -43,7 +43,7 @@
       "precio": 9800,
       "categoria": "entradas",
       "tags": ["para-compartir", "picante"],
-      "imagen": "/images/platos/chorizo-criollo.svg",
+      "imagen": "/images/platos/chorizo-criollo.jpg",
       "modelo": null
     },
     {
@@ -53,7 +53,7 @@
       "precio": 34900,
       "categoria": "principales",
       "tags": ["destacado"],
-      "imagen": "/images/platos/ojo-de-bife-madurado.svg",
+      "imagen": "/images/platos/ojo-de-bife-madurado.jpg",
       "modelo": null
     },
     {
@@ -63,7 +63,7 @@
       "precio": 31500,
       "categoria": "principales",
       "tags": ["para-compartir"],
-      "imagen": "/images/platos/asado-de-tira.svg",
+      "imagen": "/images/platos/asado-de-tira.jpg",
       "modelo": null
     },
     {
@@ -73,7 +73,7 @@
       "precio": 29800,
       "categoria": "principales",
       "tags": [],
-      "imagen": "/images/platos/entrana-fina.svg",
+      "imagen": "/images/platos/entrana-fina.jpg",
       "modelo": null
     },
     {
@@ -83,7 +83,7 @@
       "precio": 30200,
       "categoria": "principales",
       "tags": [],
-      "imagen": "/images/platos/bife-de-chorizo.svg",
+      "imagen": "/images/platos/bife-de-chorizo.jpg",
       "modelo": null
     },
     {
@@ -93,7 +93,7 @@
       "precio": 28700,
       "categoria": "principales",
       "tags": ["sin-tacc"],
-      "imagen": "/images/platos/pesca-del-dia.svg",
+      "imagen": "/images/platos/pesca-del-dia.jpg",
       "modelo": null
     },
     {
@@ -103,7 +103,7 @@
       "precio": 12300,
       "categoria": "guarniciones",
       "tags": ["vegetariano", "sin-tacc", "destacado"],
-      "imagen": "/images/platos/verduras-al-rescoldo.svg",
+      "imagen": "/images/platos/verduras-al-rescoldo.jpg",
       "modelo": null
     },
     {
@@ -113,7 +113,7 @@
       "precio": 8900,
       "categoria": "guarniciones",
       "tags": ["vegetariano", "sin-tacc"],
-      "imagen": "/images/platos/papas-rusticas-romero.svg",
+      "imagen": "/images/platos/papas-rusticas-romero.jpg",
       "modelo": null
     },
     {
@@ -123,7 +123,7 @@
       "precio": 10500,
       "categoria": "postres",
       "tags": ["vegetariano"],
-      "imagen": "/images/platos/flan-mixto.svg",
+      "imagen": "/images/platos/flan-mixto.jpg",
       "modelo": null
     },
     {
@@ -133,7 +133,7 @@
       "precio": 9600,
       "categoria": "postres",
       "tags": ["vegetariano"],
-      "imagen": "/images/platos/panqueque-dulce-de-leche.svg",
+      "imagen": "/images/platos/panqueque-dulce-de-leche.jpg",
       "modelo": null
     }
   ]
