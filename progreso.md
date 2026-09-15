@@ -144,6 +144,36 @@ las skills instaladas.
       quedó guardada en ningún lado, ni en el repo ni en el filesystem
       persistente
 
+## Modelos 3D procedurales ✅ (1 de 13 platos)
+
+Meshy quedó descartado: el plan gratuito genera pero no deja exportar el
+GLB, y este entorno no puede manejar un navegador contra sitios externos
+(el proxy resetea la conexión con cualquier host, incluso `example.com`).
+Tampoco hay GPU para correr un image-to-3D local. Así que los modelos se
+generan por código.
+
+- [x] `scripts/generate-models.mjs` + `scripts/lib/{procedural,texturas}.mjs`:
+      generador de sólidos superelipsoidales por capas (pizarra → tabla →
+      comida), con desplazamiento FBM sobre la normal de la malla y
+      horneado de texturas PBR (color + normal por Sobel + ORM)
+- [x] Paleta derivada de la foto real de cada plato, con peso bajo para que
+      el modelo pegue con la carta sin irse a un marrón plano
+- [x] `bife-de-chorizo.glb` conectado en `menu.json` — 0.20MB optimizado
+      (Draco + texturas WebP), muy por debajo del presupuesto de 3MB
+- [x] Decoder de Draco self-hosteado en `public/draco/`: drei lo bajaba por
+      default del CDN de gstatic, o sea que el primer modelo real del sitio
+      dependía de un tercero
+- [x] `Environment` armado con Lightformers en vez de `preset`: los presets
+      bajan un HDRI de otro CDN, y de eso dependía que un material PBR se
+      viera como algo más que una mancha oscura
+- [x] Sombras entre capas: `castShadow` en el `<primitive>` no baja a las
+      mallas del GLTF (hay que recorrerlo), el frustum de sombra estaba
+      dimensionado para 10×10 unidades con un modelo de 1.5, y el IBL tapaba
+      la sombra proyectada. Los tres arreglados — sin eso el apilado se veía
+      como calcomanías superpuestas
+- [ ] Faltan recetas para los otros 12 platos (empanadas, provoleta, flan,
+      papas… cada forma necesita su propia composición)
+
 ## Entregable final (pendiente)
 
 - [ ] `README.md` con instrucciones de deploy en Vercel

@@ -2,19 +2,45 @@
 
 Flujo para agregar el modelo 3D de un plato a la carta.
 
-## 1. Generar el GLB con Meshy
+## 1. Generar el GLB
 
-1. Generá el modelo en [Meshy](https://www.meshy.ai/) a partir de una foto o
-   un prompt del plato.
-2. Exportalo en formato **GLB** (no GLTF+bin separado).
-3. Guardalo en `public/models/raw/` con un nombre descriptivo, por ejemplo
-   `public/models/raw/provoleta-al-rescoldo.glb`. Esa carpeta no se sube al
-   repo (ver `.gitignore`), es solo tu carpeta de trabajo local.
+```bash
+node scripts/generate-models.mjs bife-de-chorizo
+```
 
-Los exports de Meshy suelen venir con escalas y pivotes arbitrarios — no
-hace falta corregirlos a mano. El visor (`src/components/viewer/PlatoModel.tsx`)
-centra y reescala cualquier modelo automáticamente para que el zoom de la
-cámara funcione igual para todos los platos.
+El generador arma el modelo por código y lo deja en `public/models/raw/`
+(esa carpeta no se sube al repo, ver `.gitignore`). Cada plato se compone
+por capas apiladas — base de pizarra → tabla → la comida — y cada capa es un
+**superelipsoide**: la familia de sólidos que interpola entre esfera y caja
+según dos exponentes, que es justo lo que hace falta para describir tanto
+una tabla aserrada como un corte de carne con una sola fórmula cerrada.
+
+Sobre esa base:
+
+- La comida lleva **desplazamiento con ruido FBM** sobre la normal de la
+  malla, para que la silueta sea irregular en vez del óvalo perfecto que
+  sale de la fórmula.
+- Las texturas PBR (color, normal y ORM) se hornean en el mismo script. El
+  normal map sale de derivar con Sobel el mismo campo de alturas que genera
+  el color, así el relieve coincide con lo que se ve.
+- La paleta se deriva de la foto real del plato (`public/images/platos/`)
+  con peso bajo: alcanza para que el modelo y la carta no parezcan dos
+  platos distintos, sin arrastrar todo a un marrón plano.
+
+Para depurar una textura conviene mirarla plana antes que sobre el modelo —
+es la forma rápida de separar un bug de horneado de uno de mapeo UV:
+
+```bash
+DUMP_TEX=/tmp/tex node scripts/generate-models.mjs bife-de-chorizo
+```
+
+Las recetas viven en la constante `RECETAS` al final del script. Agregar un
+plato es agregar una entrada ahí.
+
+Si en algún momento se reemplaza un modelo por uno hecho en una herramienta
+externa, basta con dejar el `.glb` en `public/models/raw/`: el visor
+(`src/components/viewer/PlatoModel.tsx`) centra y reescala cualquier modelo
+automáticamente, sin importar con qué escala o pivote venga exportado.
 
 ## 2. Optimizar
 

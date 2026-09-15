@@ -44,7 +44,7 @@ const archivos = existsSync(RAW_DIR)
 
 if (archivos.length === 0) {
   console.log(
-    `No hay modelos en public/models/raw/. Poné ahí los .glb exportados de Meshy y volvé a correr "npm run optimize:models".`
+    `No hay modelos en public/models/raw/. Generalos con "node scripts/generate-models.mjs" y volvé a correr "npm run optimize:models".`
   );
   process.exit(0);
 }

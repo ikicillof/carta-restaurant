@@ -29,7 +29,10 @@ export function DishCard({ plato }: DishCardProps) {
     if (!modelo || !supportsHover()) return;
     // Import dinámico: mantiene drei fuera del bundle principal y solo
     // trae la librería (y el GLB) cuando el mouse pasa por la card.
-    import("@react-three/drei").then(({ useGLTF }) => useGLTF.preload(modelo));
+    import("@react-three/drei").then(({ useGLTF }) => {
+      useGLTF.setDecoderPath("/draco/");
+      useGLTF.preload(modelo);
+    });
   }
 
   return (

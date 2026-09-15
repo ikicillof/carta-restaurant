@@ -2,7 +2,12 @@
 
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  Lightformer,
+  OrbitControls,
+} from "@react-three/drei";
 import { PlatoModel } from "@/components/viewer/PlatoModel";
 import { ErrorBoundary } from "@/components/viewer/ErrorBoundary";
 
@@ -24,37 +29,70 @@ export default function ModelViewerCanvas({
       shadows
       dpr={[1, 2]}
       gl={{ alpha: true, antialias: true }}
-      camera={{ position: [0, 1.35, 2.7], fov: 35 }}
+      camera={{ position: [0, 1.75, 2.4], fov: 35 }}
     >
+      <ambientLight intensity={0.34} color="#fff4e6" />
       {/*
-        Luz base generosa a propósito: el Environment de abajo puede tardar
-        o fallar (red del cliente, CDN caído), y sin IBL un material PBR se
-        ve casi negro con luces tenues. Con esto el plato se ve bien incluso
-        si el HDRI nunca llega.
+        Frustum de sombra ajustado al modelo: el default cubre 10×10 unidades
+        y el plato mide 1.5, así que la sombra caía en un puñado de téxeles y
+        no se leía el contacto entre las capas.
       */}
-      <ambientLight intensity={0.85} color="#fff4e6" />
       <directionalLight
-        position={[2, 3, 2]}
-        intensity={0.9}
-        color="#fff4e6"
+        position={[2.2, 3.4, 2]}
+        intensity={2.4}
+        color="#fff2e0"
         castShadow
-        shadow-mapSize={[1024, 1024]}
+        shadow-mapSize={[2048, 2048]}
+        shadow-camera-left={-1.6}
+        shadow-camera-right={1.6}
+        shadow-camera-top={1.6}
+        shadow-camera-bottom={-1.6}
+        shadow-camera-near={0.5}
+        shadow-camera-far={12}
+        shadow-bias={-0.0004}
+        shadow-normalBias={0.02}
       />
-      <directionalLight position={[-2, 1.5, -1.5]} intensity={0.35} color="#fff4e6" />
+      <directionalLight position={[-2.4, 1.6, -1.8]} intensity={0.85} color="#c98f5a" />
 
-      {/*
-        Boundaries separados a propósito: el modelo (o su primitiva
-        placeholder, que no carga nada async) no debe quedar tapado por el
-        HDRI del estudio si ese fetch es lento o falla. La luz ambiental +
-        direccional de arriba ya deja el plato visible sin el Environment.
-      */}
       <Suspense fallback={null}>
         <PlatoModel modelo={modelo} onReady={onModelReady} />
       </Suspense>
 
+      {/*
+        Estudio armado con Lightformers en vez de `preset`: los presets de
+        drei bajan un HDRI de un CDN externo, y de eso dependía que un
+        material PBR se viera como algo más que una mancha oscura. Modelado
+        acá, el reflejo especular no depende de la red de nadie — y además
+        las luces siguen la paleta cálida de la marca.
+      */}
       <ErrorBoundary fallback={null}>
         <Suspense fallback={null}>
-          <Environment preset="studio" />
+          <Environment resolution={256}>
+            {/*
+              Intensidades bajas a propósito: el IBL no se ocluye, así que
+              subirlo tapa por completo la sombra proyectada y el bife deja
+              de apoyarse sobre la tabla. Acá el entorno aporta el reflejo
+              especular y la direccional hace de luz principal.
+            */}
+            <Lightformer
+              intensity={1.1}
+              position={[0, 4, 1.5]}
+              scale={[8, 4, 1]}
+              color="#fff6ea"
+            />
+            <Lightformer
+              intensity={0.55}
+              position={[-3.5, 1.5, 2]}
+              scale={[4, 4, 1]}
+              color="#e8a33d"
+            />
+            <Lightformer
+              intensity={0.4}
+              position={[3.5, 1, -2.5]}
+              scale={[4, 4, 1]}
+              color="#b65c2e"
+            />
+          </Environment>
         </Suspense>
       </ErrorBoundary>
 
@@ -69,12 +107,12 @@ export default function ModelViewerCanvas({
 
       <OrbitControls
         makeDefault
-        target={[0, 0.55, 0]}
+        target={[0, 0.16, 0]}
         enablePan={false}
         enableDamping
         dampingFactor={0.08}
-        minDistance={1.7}
-        maxDistance={3.6}
+        minDistance={2}
+        maxDistance={4.2}
         minPolarAngle={Math.PI / 6}
         maxPolarAngle={Math.PI / 2.05}
         autoRotate={autoRotate}

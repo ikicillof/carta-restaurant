@@ -84,7 +84,7 @@
       "categoria": "principales",
       "tags": [],
       "imagen": "/images/platos/bife-de-chorizo.jpg",
-      "modelo": null
+      "modelo": "/models/bife-de-chorizo.glb"
     },
     {
       "id": "pesca-del-dia",

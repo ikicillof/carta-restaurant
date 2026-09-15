@@ -5,6 +5,11 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { getThemeColor } from "@/lib/theme-color";
 
+// Decoder de Draco servido desde /public en vez del CDN de gstatic por
+// default de drei: evita depender de un tercero para algo que va en el
+// bundle estático del sitio.
+useGLTF.setDecoderPath("/draco/");
+
 const TAMANO_OBJETIVO = 1.5;
 
 /**
@@ -43,10 +48,23 @@ function ModeloGltf({
   const { scene } = useGLTF(url);
   const clon = useMemo(() => scene.clone(true), [scene]);
   useNormalizado(clon);
+
+  // castShadow/receiveShadow en el <primitive> no bajan a las mallas del
+  // GLTF: hay que recorrerlo. Sin esto las capas del plato no se proyectan
+  // sombra entre sí y el apilado se ve como calcomanías superpuestas.
+  useEffect(() => {
+    clon.traverse((obj) => {
+      if ((obj as THREE.Mesh).isMesh) {
+        obj.castShadow = true;
+        obj.receiveShadow = true;
+      }
+    });
+  }, [clon]);
+
   // Suspense recién monta este componente cuando useGLTF ya resolvió,
   // así que este efecto marca "listo" exactamente en ese momento.
   useEffect(() => onReady?.(), [onReady]);
-  return <primitive object={clon} castShadow receiveShadow />;
+  return <primitive object={clon} />;
 }
 
 function ModeloPlaceholder({ onReady }: { onReady?: () => void }) {
