@@ -1,11 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import restaurant from "@/data/restaurant.json";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Null hasta que hidrata. El video se monta solo en apaisado, así en el
+  // celular no se bajan los 869KB del clip para nada.
+  const [apaisado, setApaisado] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(orientation: landscape)");
+    const leer = () => setApaisado(mq.matches);
+    leer();
+    mq.addEventListener("change", leer);
+    return () => mq.removeEventListener("change", leer);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -16,34 +28,50 @@ export function Hero() {
     // una imagen del bife sobre la parrilla: el hero no pierde nada.
     video.pause();
     video.currentTime = 0;
-  }, []);
+  }, [apaisado]);
 
   return (
-    /*
-      En vertical la sección mide exactamente lo que mide el clip a ancho
-      completo (16:9 → 56.25vw): así se ve el cuadro entero, sin recorte y
-      sin relleno alrededor. En apaisado vuelve a ocupar la pantalla.
-    */
     <section
       id="inicio"
-      className="relative flex h-[56.25vw] flex-col items-center justify-center overflow-hidden bg-carbon px-6 text-center landscape:h-auto landscape:min-h-dvh"
+      className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-carbon px-6 text-center"
     >
+      {/*
+        En vertical va el último cuadro del clip —el plato ya servido—
+        recortado a proporción de celular. Un 16:9 en una pantalla vertical
+        obliga a elegir entre recortarlo, encogerlo o rellenar los costados,
+        y ninguna de las tres quedaba bien; como imagen fija el recorte es
+        una decisión de encuadre normal. Además evita bajar el video.
+      */}
+      {apaisado !== true && (
+        <Image
+          src="/videos/hero-movil.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="pointer-events-none object-cover"
+        />
+      )}
+
       {/*
         Sin `loop` a propósito: el clip cuenta crudo → parrilla → plato, y
         al terminar se queda en el plato servido. Repetirlo haría un corte
         seco del plato terminado de vuelta a la carne cruda.
       */}
-      <video
-        ref={videoRef}
-        src="/videos/hero.mp4"
-        poster="/videos/hero-poster.jpg"
-        aria-hidden="true"
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-      />
+      {apaisado === true && (
+        <video
+          ref={videoRef}
+          src="/videos/hero.mp4"
+          poster="/videos/hero-poster.jpg"
+          aria-hidden="true"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+      )}
 
       {/*
         Velo sobre el video: el tramo de humo del clip es casi blanco y sin
@@ -77,7 +105,7 @@ export function Hero() {
       */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-carbon landscape:h-56"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-carbon sm:h-56"
       />
 
       <div className="relative flex flex-col items-center gap-6">
