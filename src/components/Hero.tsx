@@ -33,6 +33,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
+      data-embers-exclude
       className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-carbon px-6 text-center"
     >
       {/*

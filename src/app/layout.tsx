@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { EmbersOverlay } from "@/components/EmbersOverlay";
 import restaurant from "@/data/restaurant.json";
 import "./globals.css";
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-carbon text-hueso font-sans antialiased">
         {children}
+        <EmbersOverlay />
       </body>
     </html>
   );
