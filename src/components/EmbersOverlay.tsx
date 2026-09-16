@@ -10,7 +10,28 @@ function suscribirReducido(avisar: () => void) {
   return () => mq.removeEventListener("change", avisar);
 }
 
-const COLORES = ["#FF6B1A", "#FFA033", "#FFD27A"];
+// El naranja queda reservado al halo: el núcleo es casi blanco cálido, que es
+// lo que lee como brasa al rojo vivo en lugar de una mancha naranja difusa.
+const NUCLEO_COLORES = ["#FFF4DC", "#FFE9B0"];
+const HALO_COLORES = ["#FF6B1A", "#FFA033"];
+
+/** Radio del núcleo sólido, en px antes de escalar por DPR. Brasas chicas,
+ *  tipo chispa. */
+const RADIO_MIN = 0.4;
+const RADIO_MAX = 1.2;
+
+/** Opacidad base de cada brasa: que quemen, no que titilen. */
+const OPACIDAD_MIN = 0.85;
+const OPACIDAD_MAX = 1;
+
+/** Blur del halo, en px antes de escalar por DPR. Con un shadowBlur grande
+ *  la brasa se vuelve una mancha; esto la deja con un borde definido. */
+const HALO_BLUR_MIN = 2;
+const HALO_BLUR_MAX = 3;
+
+/** Partículas por tamaño de viewport. */
+const CANTIDAD_DESKTOP = 100;
+const CANTIDAD_MOBILE = 35;
 
 /** Fracción del hero visible por debajo de la cual el overlay aparece. */
 const UMBRAL_HERO = 0.2;
@@ -23,11 +44,6 @@ const SCROLL_PARA_MAXIMO = 45;
 
 /** Fuerza del jitter que la turbulencia suma a la velocidad. */
 const DISPERSION = 0.55;
-
-/** El glow de cada brasa mide este múltiplo de su radio. */
-const ESCALA_GLOW = 4;
-
-const SPRITE_PX = 64;
 
 interface Brasa {
   x: number;
@@ -44,45 +60,25 @@ interface Brasa {
   fase: number;
   amplitud: number;
   color: number;
+  haloBlur: number;
 }
 
 function reciclar(b: Brasa, ancho: number, alto: number, inicial: boolean) {
   b.x = Math.random() * ancho;
   // Al arrancar se reparten por toda la pantalla; después entran por abajo.
   b.y = inicial ? Math.random() * alto : alto + Math.random() * 40;
-  b.radio = 0.8 + Math.random() * 1.6;
+  b.radio = RADIO_MIN + Math.random() * (RADIO_MAX - RADIO_MIN);
   b.vyBase = -(0.15 + Math.random() * 0.45);
   b.vxBase = (Math.random() - 0.5) * 0.08;
   b.vx = b.vxBase;
   b.vy = b.vyBase;
   b.vida = inicial ? Math.random() * 400 : 0;
   b.vidaMax = 600 + Math.random() * 900;
-  b.opacidad = 0.35 + Math.random() * 0.45;
+  b.opacidad = OPACIDAD_MIN + Math.random() * (OPACIDAD_MAX - OPACIDAD_MIN);
   b.fase = Math.random() * Math.PI * 2;
   b.amplitud = 0.12 + Math.random() * 0.35;
-  b.color = Math.floor(Math.random() * COLORES.length);
-}
-
-/**
- * Cada color se pre-renderiza una vez a un canvas propio. Dibujar ese sprite
- * escalado es lo que da el glow sin crear un gradiente por brasa por frame,
- * que sería una allocation en cada vuelta del loop.
- */
-function crearSprite(color: string) {
-  const c = document.createElement("canvas");
-  c.width = SPRITE_PX;
-  c.height = SPRITE_PX;
-  const g = c.getContext("2d");
-  if (!g) return c;
-  const r = SPRITE_PX / 2;
-  const grad = g.createRadialGradient(r, r, 0, r, r, r);
-  grad.addColorStop(0, color);
-  grad.addColorStop(0.3, `${color}99`);
-  grad.addColorStop(1, `${color}00`);
-  g.fillStyle = grad;
-  // fillRect acá es sobre el sprite offscreen, no sobre el canvas visible.
-  g.fillRect(0, 0, SPRITE_PX, SPRITE_PX);
-  return c;
+  b.color = Math.floor(Math.random() * NUCLEO_COLORES.length);
+  b.haloBlur = HALO_BLUR_MIN + Math.random() * (HALO_BLUR_MAX - HALO_BLUR_MIN);
 }
 
 export function EmbersOverlay() {
@@ -106,8 +102,6 @@ export function EmbersOverlay() {
     const canvas = elemento;
     const ctx = contexto;
 
-    const sprites = COLORES.map(crearSprite);
-
     let ancho = 0;
     let alto = 0;
     let brasas: Brasa[] = [];
@@ -121,7 +115,8 @@ export function EmbersOverlay() {
     let objetivoOpacidad = 1;
     let timeoutResize: ReturnType<typeof setTimeout> | undefined;
 
-    const cantidad = () => (window.innerWidth < 768 ? 25 : 70);
+    const cantidad = () =>
+      window.innerWidth < 768 ? CANTIDAD_MOBILE : CANTIDAD_DESKTOP;
 
     function dimensionar() {
       // El DPR se limita a 2: en pantallas 3x el costo se triplica sin que la
@@ -210,6 +205,10 @@ export function EmbersOverlay() {
 
       if (opacidad < 0.01) return;
 
+      // Núcleo sólido (arc) más un halo mínimo por shadowBlur, en vez de un
+      // sprite con gradiente difuso: así el borde de la brasa queda
+      // definido, no una mancha. El naranja vive solo en el halo — el
+      // fillStyle del núcleo es siempre el casi-blanco cálido.
       ctx.globalCompositeOperation = "lighter";
       for (let i = 0; i < brasas.length; i++) {
         const b = brasas[i];
@@ -219,16 +218,15 @@ export function EmbersOverlay() {
         const alpha = b.opacidad * fade * opacidad;
         if (alpha <= 0.002) continue;
 
-        const lado = b.radio * ESCALA_GLOW * 2;
         ctx.globalAlpha = alpha;
-        ctx.drawImage(
-          sprites[b.color],
-          b.x - lado / 2,
-          b.y - lado / 2,
-          lado,
-          lado,
-        );
+        ctx.shadowColor = HALO_COLORES[b.color];
+        ctx.shadowBlur = b.haloBlur;
+        ctx.fillStyle = NUCLEO_COLORES[b.color];
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radio, 0, Math.PI * 2);
+        ctx.fill();
       }
+      ctx.shadowBlur = 0;
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";
     }
