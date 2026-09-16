@@ -74,32 +74,6 @@ export function Hero() {
         </p>
       </div>
 
-      <a
-        href="#sobre-nosotros"
-        aria-label="Bajar a la siguiente sección"
-        className="absolute bottom-8 flex flex-col items-center gap-2 text-ceniza transition-colors hover:text-brasa"
-      >
-        <span className="text-xs uppercase tracking-[0.25em]">Scroll</span>
-        <svg
-          width="18"
-          height="28"
-          viewBox="0 0 18 28"
-          fill="none"
-          className="animate-float motion-reduce:animate-none"
-        >
-          <rect
-            x="1"
-            y="1"
-            width="16"
-            height="26"
-            rx="8"
-            stroke="currentColor"
-            strokeOpacity="0.5"
-          />
-          <circle cx="9" cy="9" r="2.5" fill="currentColor" />
-        </svg>
-      </a>
-
       <div id="hero-sentinel" className="absolute bottom-0 h-px w-full" />
     </section>
   );
