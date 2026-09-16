@@ -10,15 +10,15 @@ function suscribirReducido(avisar: () => void) {
   return () => mq.removeEventListener("change", avisar);
 }
 
-// El naranja queda reservado al halo: el núcleo es casi blanco cálido, que es
-// lo que lee como brasa al rojo vivo en lugar de una mancha naranja difusa.
-const NUCLEO_COLORES = ["#FFF4DC", "#FFE9B0"];
-const HALO_COLORES = ["#FF6B1A", "#FFA033"];
+// Paleta corrida hacia el fuego: núcleo dorado/ámbar en vez de casi blanco,
+// halo en naranja-rojo más profundo. El naranja sigue sin invadir el centro,
+// pero el conjunto lee más caliente y menos "chispa de bengala".
+const NUCLEO_COLORES = ["#FFD9A0", "#FFB868"];
+const HALO_COLORES = ["#FF5A1A", "#FF3D00"];
 
-/** Radio del núcleo sólido, en px antes de escalar por DPR. Brasas chicas,
- *  tipo chispa. */
-const RADIO_MIN = 0.4;
-const RADIO_MAX = 1.2;
+/** Radio del núcleo sólido, en px antes de escalar por DPR. */
+const RADIO_MIN = 0.6;
+const RADIO_MAX = 1.8;
 
 /** Opacidad base de cada brasa: que quemen, no que titilen. */
 const OPACIDAD_MIN = 0.85;
@@ -26,8 +26,8 @@ const OPACIDAD_MAX = 1;
 
 /** Blur del halo, en px antes de escalar por DPR. Con un shadowBlur grande
  *  la brasa se vuelve una mancha; esto la deja con un borde definido. */
-const HALO_BLUR_MIN = 2;
-const HALO_BLUR_MAX = 3;
+const HALO_BLUR_MIN = 3;
+const HALO_BLUR_MAX = 5;
 
 /** Partículas por tamaño de viewport. */
 const CANTIDAD_DESKTOP = 100;
