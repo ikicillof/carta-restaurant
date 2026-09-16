@@ -1,66 +1,42 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Logo } from "@/components/Logo";
 import restaurant from "@/data/restaurant.json";
 
-const APAISADO = {
-  video: "/videos/hero.mp4",
-  poster: "/videos/hero-poster.jpg",
-};
-
-const VERTICAL = {
-  video: "/videos/hero-vertical.mp4",
-  poster: "/videos/hero-vertical-poster.jpg",
-};
-
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // La fuente se resuelve en el cliente para que se baje un solo archivo, el
-  // que corresponde a la orientación. Hasta entonces el elemento no tiene
-  // src y lo que se ve es el póster.
-  const [clip, setClip] = useState<typeof APAISADO | null>(null);
-
-  useEffect(() => {
-    const vertical = window.matchMedia("(orientation: portrait)");
-    const elegir = () => setClip(vertical.matches ? VERTICAL : APAISADO);
-    elegir();
-    vertical.addEventListener("change", elegir);
-    return () => vertical.removeEventListener("change", elegir);
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !clip) return;
+    if (!video) return;
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     // Con movimiento reducido el clip queda en su primer cuadro, que ya es
     // una imagen del bife sobre la parrilla: el hero no pierde nada.
     video.pause();
     video.currentTime = 0;
-  }, [clip]);
+  }, []);
 
   return (
+    /*
+      En vertical la sección mide exactamente lo que mide el clip a ancho
+      completo (16:9 → 56.25vw): así se ve el cuadro entero, sin recorte y
+      sin relleno alrededor. En apaisado vuelve a ocupar la pantalla.
+    */
     <section
       id="inicio"
-      className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-carbon px-6 text-center"
+      className="relative flex h-[56.25vw] flex-col items-center justify-center overflow-hidden bg-carbon px-6 text-center landscape:h-auto landscape:min-h-dvh"
     >
       {/*
         Sin `loop` a propósito: el clip cuenta crudo → parrilla → plato, y
         al terminar se queda en el plato servido. Repetirlo haría un corte
         seco del plato terminado de vuelta a la carne cruda.
       */}
-      {/*
-        Hay una versión por orientación. La vertical no recorta el 16:9: lo
-        deja entero al ancho de la pantalla y completa arriba y abajo con una
-        copia ampliada y desenfocada del mismo cuadro, así llena el celular
-        sin perder nada de la imagen.
-      */}
       <video
-        key={clip?.video}
         ref={videoRef}
-        src={clip?.video}
-        poster={clip?.poster}
+        src="/videos/hero.mp4"
+        poster="/videos/hero-poster.jpg"
         aria-hidden="true"
         autoPlay
         muted
@@ -101,7 +77,7 @@ export function Hero() {
       */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-carbon sm:h-56"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-carbon landscape:h-56"
       />
 
       <div className="relative flex flex-col items-center gap-6">
