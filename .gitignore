@@ -43,7 +43,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Clips del hero: se arman con el pipeline de video y no se versionan
-# mientras el material definitivo no esté aprobado.
-/public/videos/

@@ -112,7 +112,12 @@ export function Hero() {
           poster="/videos/hero-poster.jpg"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         >
-          <source src="/videos/hero.webm" type="video/webm" />
+          {/*
+            Solo H.264. Se probó servir además un WebM/VP9, pero el clip va
+            codificado con todos los cuadros como keyframe —lo que hace que
+            el scrub no se trabe— y en ese modo VP9 comprime peor: 3.2MB
+            contra 1.9MB. El segundo formato sumaba peso sin dar nada.
+          */}
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
 
