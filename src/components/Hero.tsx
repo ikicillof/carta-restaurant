@@ -36,7 +36,14 @@ export function Hero() {
         playsInline
         preload="auto"
         poster="/videos/hero-poster.jpg"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        /*
+          En apaisado el clip va a sangre. En vertical no: un 16:9 recortado
+          a pantalla de celular deja ver como un cuarto del ancho, así que
+          se muestra entero como una banda al ancho de la pantalla, con los
+          bordes de arriba y abajo disueltos contra el fondo para que no
+          quede un rectángulo pegado en el medio.
+        */
+        className="pointer-events-none absolute inset-x-0 top-1/2 w-full -translate-y-1/2 [mask-image:linear-gradient(to_bottom,transparent_0%,#000_14%,#000_86%,transparent_100%)] landscape:inset-0 landscape:h-full landscape:translate-y-0 landscape:object-cover landscape:[mask-image:none]"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
